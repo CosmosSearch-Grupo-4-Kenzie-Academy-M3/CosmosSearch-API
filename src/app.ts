@@ -4,3 +4,5 @@ import "express-async-errors"
 
 const app = express()
 app.use(json())
+
+export default app
