@@ -1,5 +1,5 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity ("users")
 class USer {
@@ -10,7 +10,13 @@ class USer {
     email: string
 
     @Column({type: "varchar", length: 120})
-    name: string
+    username: string
+
+    @Column({type: "varchar", length: 120})
+    firstName: string
+
+    @Column({type: "varchar", length: 120})
+    lastName: string
 
     @Column({type: "varchar", length: 120})
     password: string
@@ -20,6 +26,9 @@ class USer {
 
     @UpdateDateColumn({type: "date"})
     updatedAt: string
+
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string    
 
     @BeforeInsert()
     @BeforeUpdate()

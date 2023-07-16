@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity ("posts")
 class Post {
@@ -19,4 +19,7 @@ class Post {
 
     @UpdateDateColumn({type: "date"})
     updatedAt: string
+
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string      
 }

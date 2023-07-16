@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity ("comments")
 class Commet {
@@ -13,4 +13,7 @@ class Commet {
 
     @UpdateDateColumn({type: "date"})
     updatedAt: string
+    
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string   
 }
