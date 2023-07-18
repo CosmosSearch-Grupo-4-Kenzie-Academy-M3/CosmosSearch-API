@@ -1,40 +1,69 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
-@Entity ("users")
-class USer {
-    @PrimaryGeneratedColumn()
-    id: number
+import { Like, Comment, Post } from ".";
 
-    @Column({type: "varchar", length: 120})
-    email: string
+@Entity("users")
+class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({type: "varchar", length: 120})
-    username: string
+  @Column({ type: "varchar", length: 120 })
+  email: string;
 
-    @Column({type: "varchar", length: 120})
-    firstName: string
+  @Column({ type: "varchar", length: 120 })
+  username: string;
 
-    @Column({type: "varchar", length: 120})
-    lastName: string
+  @Column({ type: "varchar", length: 120 })
+  firstName: string;
 
-    @Column({type: "varchar", length: 120})
-    password: string
+  @Column({ type: "varchar", length: 120 })
+  lastName: string;
 
-    @CreateDateColumn({type: "date"})
-    createdAt: string
+  @Column({ type: "varchar", length: 120 })
+  password: string;
 
-    @UpdateDateColumn({type: "date"})
-    updatedAt: string
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
 
-    @DeleteDateColumn({type: "date"})
-    deletedAt: string    
+  @UpdateDateColumn({ type: "date" })
+  updatedAt: string;
 
-    @BeforeInsert()
-    @BeforeUpdate()
-    hashPassword() {
-        const isHashed = getRounds(this.password)
+  @DeleteDateColumn({ type: "date" })
+  deletedAt: string;
 
-        if(!isHashed) this.password = hashSync(this.password, 10)
-    }
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    const isHashed = getRounds(this.password);
+
+    if (!isHashed) this.password = hashSync(this.password, 10);
+  }
+
+  @OneToMany(() => Post, (post) => post.user, {
+    eager: true,
+  })
+  posts: Post[];
+
+  @OneToMany(() => Like, (like) => like.user, {
+    eager: true,
+  })
+  likes: Like[];
+
+  @OneToMany(() => Comment, (comment) => comment.user, {
+    eager: true,
+  })
+  comments: Comment[];
 }
+
+export default User;
