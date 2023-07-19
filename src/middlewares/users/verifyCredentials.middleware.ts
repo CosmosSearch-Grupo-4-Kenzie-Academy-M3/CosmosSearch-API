@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 
 import repositories from "../../utils/respositorys";
 
-const verifyCredentials = async (req: Request, res: Response, next: NextFunction) => {
+const verifyCredentials = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     const userData = req.body
 
     const user = await repositories.user.findOneBy({
@@ -21,6 +21,8 @@ const verifyCredentials = async (req: Request, res: Response, next: NextFunction
     const validatePassword: boolean = compareSync(userRequestPassword, userPassword);
 
     if (!validatePassword) return res.status(401).json({message: "Invalid credentials"});
+
+    return next();
 };
 
 export default verifyCredentials;
