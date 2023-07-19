@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 
 import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
 
+const userLogin = async (req: Request, res: Response): Promise<Response> => {
+    return res.json("");
+};
+
 const userCreate = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");
 };
@@ -19,6 +23,7 @@ const userDelete = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const users = {
+    userLogin,
     userCreate,
     userRead,
     userUpdate,
