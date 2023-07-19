@@ -1,7 +1,9 @@
 import verifyCredentials from "./verifyCredentials.middleware";
+import verifyToken from "./verifyToken.middleware";
 
 const user = {
-    verifyCredentials
+    verifyCredentials,
+    verifyToken
 }
 
 export default user;
