@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { Comment, Like, User } from ".";
+import { PostLike, User, PostComment } from "../entities";
 
 @Entity("posts")
 class Post {
@@ -35,15 +35,15 @@ class Post {
   deletedAt: string;
 
   @ManyToOne(() => User, (user) => user.posts, {
-    onDelete: "CASCADE",
+    onDelete: "CASCADE"
   })
   user: User;
 
-  @OneToMany(() => Like, (like) => like.post)
-  likes: Like[];
+  @ManyToOne(() => PostComment, (comment) => comment.post)
+  comments: PostComment;
 
-  @OneToMany(() => Comment, (comment) => comment.post)
-  comments: Comment[];
+  @OneToMany(() => PostLike, (like) => like.post)
+  likes: PostLike[];
 }
 
-export default Post;
+export { Post };

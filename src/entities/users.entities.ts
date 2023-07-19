@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { Like, Comment, Post } from ".";
+import { PostLike, Post, PostComment } from "../entities";
 
 @Entity("users")
 class User {
@@ -42,6 +42,21 @@ class User {
   @DeleteDateColumn({ type: "date" })
   deletedAt: string;
 
+  @OneToMany(() => Post, (post) => post.user, {
+    eager: true,
+  })
+  posts: Post[];
+
+  @OneToMany(() => PostLike, (like) => like.user, {
+    eager: true,
+  })
+  likes: PostLike[];
+
+  @OneToMany(() => PostComment, (postComment) => postComment.user, {
+    eager: true,
+  })
+  comments: PostComment[];
+
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {
@@ -49,21 +64,6 @@ class User {
 
     if (!isHashed) this.password = hashSync(this.password, 10);
   }
-
-  @OneToMany(() => Post, (post) => post.user, {
-    eager: true,
-  })
-  posts: Post[];
-
-  @OneToMany(() => Like, (like) => like.user, {
-    eager: true,
-  })
-  likes: Like[];
-
-  @OneToMany(() => Comment, (comment) => comment.user, {
-    eager: true,
-  })
-  comments: Comment[];
 }
 
-export default User;
+export { User };

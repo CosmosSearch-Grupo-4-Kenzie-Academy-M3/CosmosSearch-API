@@ -1,20 +1,19 @@
 import { PrimaryGeneratedColumn, Entity, ManyToOne } from "typeorm";
 
-import { Post, User } from ".";
+import { Post, User } from "../entities";
+
 @Entity("likes")
-class Like {
+class PostLike {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Post, (post) => post.likes, {
-    onDelete: "CASCADE",
-  })
+  @ManyToOne(() => Post, (post) => post.likes)
   post: Post;
 
   @ManyToOne(() => User, (user) => user.likes, {
-    onDelete: "CASCADE",
+    onDelete: "CASCADE"
   })
   user: User;
 }
 
-export default Like;
+export { PostLike };

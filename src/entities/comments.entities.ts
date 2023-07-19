@@ -1,41 +1,35 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+import { 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    ManyToOne, 
+    PrimaryGeneratedColumn, 
+    UpdateDateColumn 
 } from "typeorm";
 
-import { Post, User } from ".";
+import { Post, User } from "../entities";
 
 @Entity("comments")
-class Commet {
-  @PrimaryGeneratedColumn()
-  id: number;
+class PostComment {
+    @PrimaryGeneratedColumn()
+    id: number
 
-  @Column({ type: "text" })
-  text: string;
+    @Column({ type: "text"})
+    title: string
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
+    @CreateDateColumn({ type: "date" })
+    createdAt: string;
+  
+    @UpdateDateColumn({ type: "date" })
+    updatedAt: string;
 
-  @UpdateDateColumn({ type: "date" })
-  updatedAt: string;
+    @ManyToOne(() => User, (user) => user.comments, {
+        onDelete: "CASCADE",
+    })
+    user: User;
 
-  @DeleteDateColumn({ type: "date" })
-  deletedAt: string;
-
-  @ManyToOne(() => Post, (post) => post.comments, {
-    onDelete: "CASCADE",
-  })
-  post: Post;
-
-  @ManyToOne(() => User, (user) => user.comments, {
-    onDelete: "CASCADE",
-  })
-  user: User;
+    @ManyToOne(() => Post, (post) => post.comments)
+    post: Post;
 }
 
-export default Commet;
+export { PostComment };
