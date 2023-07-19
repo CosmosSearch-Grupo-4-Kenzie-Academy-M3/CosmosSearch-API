@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { TPostRequest, TPost } from "../interfaces/posts.interfaces";
+import { TPostRequest, TPostResponse, TPostUpdate } from "../interfaces/posts.interfaces";
 
 const postCreate = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");

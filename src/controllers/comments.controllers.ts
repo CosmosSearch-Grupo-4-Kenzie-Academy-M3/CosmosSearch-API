@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { TCommentRequest, TComment } from "../interfaces/comments.interfaces";
+import { TCommentRequest, TCommentResponse, TCommentUpdate } from "../interfaces/comments.interfaces";
 
 const commentCreate = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");
