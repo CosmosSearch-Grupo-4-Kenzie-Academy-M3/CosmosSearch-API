@@ -1,9 +1,7 @@
-import { handleError } from "./handlerErrors.middlewares"
-import validateSchema from "./validateSchema.middleware"
+import shared from "./shared"
 
 const middlewares = {
-    handleError,
-    validateSchema
+    ...shared
 }
 
 export default middlewares
