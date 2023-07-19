@@ -1,7 +1,9 @@
 import shared from "./shared"
+import user from "./users"
 
 const middlewares = {
-    ...shared
+    ...shared,
+    ...user
 }
 
 export default middlewares
