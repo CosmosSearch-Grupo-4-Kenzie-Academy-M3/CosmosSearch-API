@@ -6,7 +6,7 @@ const validateSchema = (schema: ZodTypeAny) => (req: Request, res: Response, nex
     const validated = schema.parse(toValidate);
 
     req.body = validated;
-    return next();
+    next();
 };
 
 export default validateSchema;

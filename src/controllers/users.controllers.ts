@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 
 import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
+import usersServices from "../services/users";
 
 const userLogin = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");
 };
 
 const userCreate = async (req: Request, res: Response): Promise<Response> => {
-    return res.json("");
+    const newUserData = req.body;
+
+    const newUser: TUserResponse = await usersServices.createUser(newUserData);
+    return res.status(201).json(newUser);
 };
 
 const userRead = async (req: Request, res: Response): Promise<Response> => {

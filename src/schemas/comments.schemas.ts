@@ -4,7 +4,7 @@ const comment = z.object({
     id: z.number(),
     text: z.string(),
     createdAt: z.string(),
-    uptedAt: z.string(),
+    updatedAt: z.string(),
     deletedAt: z.string().nullish()          
 })
 

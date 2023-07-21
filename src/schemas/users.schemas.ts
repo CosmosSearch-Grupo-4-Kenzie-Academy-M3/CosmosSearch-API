@@ -2,20 +2,20 @@ import { z } from "zod";
 
 const user = z.object({
   id: z.number(),
-  email: z.string(),
+  email: z.string().email(),
   username: z.string(),
   firstName: z.string(),
   lastName: z.string(),
   password: z.string(),
   createdAt: z.string(),
-  uptedAt: z.string(),
+  updatedAt: z.string(),
   deletedAt: z.string().nullish(),
 });
 
 const request = user.omit({
   id: true,
   createdAt: true,
-  uptedAt: true,
+  updatedAt: true,
   deletedAt: true,
 });
 
