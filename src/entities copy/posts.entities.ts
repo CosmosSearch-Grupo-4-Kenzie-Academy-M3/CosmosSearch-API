@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { PostLike, User, PostComment } from "../entities";
+import { Comment, Like, User } from ".";
 
 @Entity("posts")
 class Post {
@@ -39,11 +39,11 @@ class Post {
   })
   user: User;
 
-  @OneToMany(() => PostComment, (comment) => comment.post)
-  comments: PostComment;
+  @OneToMany(() => Like, (like) => like.post)
+  likes: Like[];
 
-  @OneToMany(() => PostLike, (like) => like.post)
-  likes: PostLike[];
+  @OneToMany(() => Comment, (comment) => comment.post)
+  comments: Comment[];
 }
 
-export { Post };
+export default Post;
