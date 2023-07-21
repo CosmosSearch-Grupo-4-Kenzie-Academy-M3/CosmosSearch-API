@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 
-import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
+import { TToken, TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
 import usersServices from "../services/users";
 
-const userLogin = async (req: Request, res: Response): Promise<Response> => {
-    return res.json("");
+const userLogin = (req: Request, res: Response): Response => {
+    const userId = res.locals.userId
+    
+    const token = usersServices.login({id: userId})
+    return res.status(200).json(token)
 };
 
 const userCreate = async (req: Request, res: Response): Promise<Response> => {

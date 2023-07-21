@@ -11,4 +11,8 @@ type TUserResponse = z.infer<typeof schemas.users.response>;
 
 type TUserUpdate = DeepPartial<TUserRequest>;
 
-export { TUser, TUserRequest, TUserResponse, TUserUpdate };
+type TLogin = z.infer<typeof schemas.users.login>
+
+type TToken = z.infer<typeof schemas.users.token>
+
+export { TUser, TUserRequest, TUserResponse, TUserUpdate, TLogin, TToken };

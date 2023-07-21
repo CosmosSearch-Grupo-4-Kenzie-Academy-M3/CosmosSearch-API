@@ -23,11 +23,22 @@ const response = user.omit({ password: true });
 
 const responseArray = response.array();
 
+const login = z.object({
+  email: z.string().email(),
+  password: z.string(),
+})
+
+const token = z.object({
+  id: z.string()
+})
+
 const users = {
   user,
   request,
   response,
   responseArray,
+  login,
+  token
 };
 
 export default users;

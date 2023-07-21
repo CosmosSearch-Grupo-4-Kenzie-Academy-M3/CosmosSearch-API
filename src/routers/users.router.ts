@@ -9,6 +9,6 @@ users.post("", middlewares.validateSchema(schemas.users.request), middlewares.ve
 users.get("", controllers.userRead);
 users.patch("", controllers.userUpdate);
 users.delete("", controllers.userDelete);
-users.post("/login", controllers.userLogin);
+users.post("/login", middlewares.validateSchema(schemas.users.login), middlewares.verifyCredentials, controllers.userLogin);
 
 export default users
