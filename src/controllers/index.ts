@@ -1,7 +1,7 @@
-import users from "./users.controllers";
-import posts from "./posts.controllers";
-import likes from "./likes.controllers";
-import comments from "./comments.controllers";
+import users from "./users.controller";
+import posts from "./posts.controller";
+import likes from "./likes.controller";
+import comments from "./comments.controller";
 
 const controllers = {
     ...users,

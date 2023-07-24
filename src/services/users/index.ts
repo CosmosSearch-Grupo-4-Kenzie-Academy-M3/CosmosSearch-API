@@ -1,4 +1,4 @@
-import createUser from "./createUser.services";
+import createUser from "./createUser.service";
 import login from "./loginUser.service";
 
 const usersServices = {
