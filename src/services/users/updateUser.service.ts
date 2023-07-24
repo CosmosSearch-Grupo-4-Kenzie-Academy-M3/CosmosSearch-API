@@ -8,10 +8,10 @@ const updateUser = async (userId: number, data: TUserUpdate) => {
         id: userId
     })
 
-    const userNewData = schemas.users.request.parse({
+    const userNewData = {
         ...user,
         ...data
-    })
+    }
 
     const userPatched: User = await repositories.user.save(userNewData)
     const userResponse: TUserResponse = schemas.users.response.parse(userPatched)

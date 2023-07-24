@@ -37,10 +37,19 @@ const userReadProfile = async (req: Request, res: Response): Promise<Response> =
     return res.json(user)
 };
 
-const userUpdate = async (req: Request, res: Response): Promise<Response> => {
+const userUpdateById = async (req: Request, res: Response): Promise<Response> => {
     const userId = Number(req.params.id)
     const data: TUserUpdate = req.body
-    console.log(userId, data)
+
+    const user = await usersServices.updateUser(userId, data)
+
+    return res.json(user)
+};
+
+const userUpdateProfile = async (req: Request, res: Response): Promise<Response> => {
+    const userId = Number(res.locals.userId)
+    const data: TUserUpdate = req.body
+
     const user = await usersServices.updateUser(userId, data)
 
     return res.json(user)
@@ -56,7 +65,8 @@ const users = {
     userReadAll,
     userReadById,
     userReadProfile,
-    userUpdate,
+    userUpdateProfile,
+    userUpdateById,
     userDelete
 };
 

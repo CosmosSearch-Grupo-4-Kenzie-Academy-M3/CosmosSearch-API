@@ -13,7 +13,8 @@ users.post("/login", middlewares.validateSchema(schemas.users.login), middleware
 users.use(middlewares.verifyToken)
 users.get("/profile", controllers.userReadProfile);
 users.get("/:id", middlewares.verifyUserId , controllers.userReadById);
-users.patch("/:id", middlewares.verifyUserId, controllers.userUpdate);
+users.patch("/:id", middlewares.verifyUserId, controllers.userUpdateById);
+users.patch("/profile/update", controllers.userUpdateProfile);
 users.delete("/:id", middlewares.verifyUserId, controllers.userDelete);
 
 export default users
