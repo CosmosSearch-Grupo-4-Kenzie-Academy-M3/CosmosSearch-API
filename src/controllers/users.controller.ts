@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { TToken, TUserRequest, TUserResponse, TUserUpdate } from "../interfaces/users.interfaces";
+import { TUserResponse, TUserUpdate } from "../interfaces/users.interfaces";
 import usersServices from "../services/users";
 
 const userLogin = (req: Request, res: Response): Response => {
@@ -56,7 +56,10 @@ const userUpdateProfile = async (req: Request, res: Response): Promise<Response>
 };
 
 const userDelete = async (req: Request, res: Response): Promise<Response> => {
-    return res.json("");
+    const userId = Number(req.params.id)
+    await usersServices.deleteUser(userId)
+
+    return res.sendStatus(204)
 };
 
 const users = {
