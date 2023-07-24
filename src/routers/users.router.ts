@@ -6,7 +6,8 @@ import schemas from "../schemas";
 
 const users = Router()
 users.post("", middlewares.validateSchema(schemas.users.request), middlewares.verifyUserEmail, controllers.userCreate);
-users.get("", controllers.userRead);
+users.get("", controllers.userReadAll);
+users.get("/:id", controllers.userReadById);
 users.patch("", controllers.userUpdate);
 users.delete("", controllers.userDelete);
 users.post("/login", middlewares.validateSchema(schemas.users.login), middlewares.verifyCredentials, controllers.userLogin);

@@ -17,7 +17,13 @@ const userCreate = async (req: Request, res: Response): Promise<Response> => {
     return res.status(201).json(newUser);
 };
 
-const userRead = async (req: Request, res: Response): Promise<Response> => {
+const userReadAll = async (req: Request, res: Response): Promise<Response> => {
+    const users = await usersServices.findAllUsers()
+
+    return res.json(users)
+};
+
+const userReadById = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");
 };
 
@@ -32,7 +38,8 @@ const userDelete = async (req: Request, res: Response): Promise<Response> => {
 const users = {
     userLogin,
     userCreate,
-    userRead,
+    userReadAll,
+    userReadById,
     userUpdate,
     userDelete
 };
