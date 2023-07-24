@@ -30,6 +30,13 @@ const userReadById = async (req: Request, res: Response): Promise<Response> => {
     return res.json(user)
 };
 
+const userReadProfile = async (req: Request, res: Response): Promise<Response> => {
+    const userId = Number(res.locals.userId)
+    const user = await usersServices.findById(userId)
+
+    return res.json(user)
+};
+
 const userUpdate = async (req: Request, res: Response): Promise<Response> => {
     return res.json("");
 };
@@ -43,6 +50,7 @@ const users = {
     userCreate,
     userReadAll,
     userReadById,
+    userReadProfile,
     userUpdate,
     userDelete
 };
