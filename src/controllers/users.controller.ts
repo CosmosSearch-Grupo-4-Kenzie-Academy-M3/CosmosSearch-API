@@ -24,7 +24,10 @@ const userReadAll = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const userReadById = async (req: Request, res: Response): Promise<Response> => {
-    return res.json("");
+    const userId = Number(req.params.id)
+    const user = await usersServices.findById(userId)
+
+    return res.json(user)
 };
 
 const userUpdate = async (req: Request, res: Response): Promise<Response> => {
