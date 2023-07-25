@@ -15,9 +15,8 @@ posts.post(
   middlewares.validateSchema(schemas.posts.request),
   controllers.postCreate
 );
-
 posts.patch("/:id", middlewares.verifyPostId, controllers.postUpdate);
 
-posts.delete("", controllers.postDelete);
+posts.delete("/:id", middlewares.verifyPostId, controllers.postDelete);
 
 export default posts;

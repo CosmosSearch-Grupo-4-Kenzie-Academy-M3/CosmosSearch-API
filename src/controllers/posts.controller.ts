@@ -27,7 +27,11 @@ const postUpdate = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const postDelete = async (req: Request, res: Response): Promise<Response> => {
-  return res.json("");
+  const postId = Number(req.params.id);
+
+  await postsServices.deletePost(postId);
+
+  return res.sendStatus(204);
 };
 
 const posts = {
