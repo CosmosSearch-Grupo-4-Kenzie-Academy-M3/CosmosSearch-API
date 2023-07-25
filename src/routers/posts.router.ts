@@ -12,6 +12,8 @@ posts.use(middlewares.verifyToken);
 
 posts.get("/profile", controllers.postReadByToken);
 
+posts.get("/:userId", middlewares.verifyUserId, controllers.postReadByUserId);
+
 posts.post(
   "",
   middlewares.validateSchema(schemas.posts.request),

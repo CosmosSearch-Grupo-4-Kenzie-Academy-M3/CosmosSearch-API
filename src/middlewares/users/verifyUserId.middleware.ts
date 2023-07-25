@@ -1,17 +1,24 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction } from "express";
 
 import repositories from "../../utils/respositorys";
 
-const verifyUserId = async (req: Request, res: Response, next: NextFunction): Promise<void | Response> => {
-    const id = Number(req.params.id)
+const verifyUserId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void | Response> => {
+  let id = Number(req.params.id);
 
-    const userFind = await repositories.user.findOneBy({
-        id: id
-    })
+  if (!id) {
+    id = Number(req.params.userId);
+  }
+  const userFind = await repositories.user.findOneBy({
+    id: id,
+  });
 
-    if (!userFind) return res.status(404).json({message: "User not Found!"})
+  if (!userFind) return res.status(404).json({ message: "User not Found!" });
 
-    next();
-}
+  next();
+};
 
 export default verifyUserId;

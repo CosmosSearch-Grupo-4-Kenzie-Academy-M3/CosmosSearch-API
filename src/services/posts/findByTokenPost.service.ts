@@ -3,7 +3,7 @@ import { TPostResponse } from "../../interfaces/posts.interfaces";
 
 import repositories from "../../utils/respositorys";
 
-const findByTokenPost = async (userId: number): Promise<TPostResponse[]> => {
+const findByUserIdPost = async (userId: number): Promise<TPostResponse[]> => {
   const posts: Post[] = await repositories.post.find({
     where: {
       user: {
@@ -15,4 +15,4 @@ const findByTokenPost = async (userId: number): Promise<TPostResponse[]> => {
   return posts;
 };
 
-export default findByTokenPost;
+export default findByUserIdPost;

@@ -1,7 +1,7 @@
 import createPost from "./createPost.service";
 import deletePost from "./deletePost.service";
 import findAllPost from "./findAllPost.service";
-import findByTokenPost from "./findByTokenPost.service";
+import findByUserIdPost from "./findByTokenPost.service";
 import updatePost from "./updatePost.service";
 
 const postsServices = {
@@ -9,6 +9,6 @@ const postsServices = {
   findAllPost,
   updatePost,
   deletePost,
-  findByTokenPost,
+  findByUserIdPost,
 };
 export default postsServices;

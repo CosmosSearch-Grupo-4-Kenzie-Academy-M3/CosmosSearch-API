@@ -32,7 +32,18 @@ const postReadByToken = async (
 ): Promise<Response> => {
   const userId = Number(res.locals.userId);
 
-  const postsUser = await postsServices.findByTokenPost(userId);
+  const postsUser = await postsServices.findByUserIdPost(userId);
+
+  return res.json(postsUser);
+};
+
+const postReadByUserId = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userId = Number(req.params.userId);
+
+  const postsUser = await postsServices.findByUserIdPost(userId);
 
   return res.json(postsUser);
 };
@@ -48,9 +59,10 @@ const postDelete = async (req: Request, res: Response): Promise<Response> => {
 const posts = {
   postCreate,
   postReadAll,
+  postReadByToken,
+  postReadByUserId,
   postUpdate,
   postDelete,
-  postReadByToken,
 };
 
 export default posts;
