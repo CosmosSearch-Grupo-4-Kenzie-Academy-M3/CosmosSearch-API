@@ -26,6 +26,17 @@ const postUpdate = async (req: Request, res: Response): Promise<Response> => {
   return res.json(newData);
 };
 
+const postReadByToken = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userId = Number(res.locals.userId);
+
+  const postsUser = await postsServices.findByTokenPost(userId);
+
+  return res.json(postsUser);
+};
+
 const postDelete = async (req: Request, res: Response): Promise<Response> => {
   const postId = Number(req.params.id);
 
@@ -39,6 +50,7 @@ const posts = {
   postReadAll,
   postUpdate,
   postDelete,
+  postReadByToken,
 };
 
 export default posts;
