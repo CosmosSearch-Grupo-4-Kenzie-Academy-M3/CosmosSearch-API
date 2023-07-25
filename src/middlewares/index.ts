@@ -1,9 +1,11 @@
-import shared from "./shared"
-import user from "./users"
+import post from "./posts";
+import shared from "./shared";
+import user from "./users";
 
 const middlewares = {
-    ...shared,
-    ...user
-}
+  ...shared,
+  ...user,
+  ...post,
+};
 
-export default middlewares
+export default middlewares;

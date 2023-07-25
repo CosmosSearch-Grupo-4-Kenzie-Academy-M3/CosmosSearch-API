@@ -16,7 +16,8 @@ posts.post(
   controllers.postCreate
 );
 
-posts.patch("", controllers.postUpdate);
+posts.patch("/:id", middlewares.verifyPostId, controllers.postUpdate);
+
 posts.delete("", controllers.postDelete);
 
 export default posts;

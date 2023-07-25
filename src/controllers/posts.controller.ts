@@ -18,7 +18,12 @@ const postReadAll = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const postUpdate = async (req: Request, res: Response): Promise<Response> => {
-  return res.json("");
+  const postId = Number(req.params.id);
+  const postData = req.body;
+
+  const newData = await postsServices.updatePost(postId, postData);
+
+  return res.json(newData);
 };
 
 const postDelete = async (req: Request, res: Response): Promise<Response> => {
