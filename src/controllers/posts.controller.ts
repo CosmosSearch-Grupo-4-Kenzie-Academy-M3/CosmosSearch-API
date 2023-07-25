@@ -1,10 +1,5 @@
 import { Request, Response } from "express";
 
-import {
-  TPostRequest,
-  TPostResponse,
-  TPostUpdate,
-} from "../interfaces/posts.interfaces";
 import postsServices from "../services/posts";
 
 const postCreate = async (req: Request, res: Response): Promise<Response> => {
@@ -12,6 +7,7 @@ const postCreate = async (req: Request, res: Response): Promise<Response> => {
   const postData = req.body;
 
   const newPost = await postsServices.createPost(postData, userId);
+
   return res.json(newPost);
 };
 

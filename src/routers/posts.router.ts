@@ -2,14 +2,13 @@ import { Router } from "express";
 
 import controllers from "../controllers";
 import middlewares from "../middlewares";
-import { scheduler } from "timers/promises";
 import schemas from "../schemas";
 
 const posts = Router();
 
 posts.get("", controllers.postRead);
 
-posts.use(middlewares.verifyCredentials);
+posts.use(middlewares.verifyToken);
 
 posts.post(
   "",
