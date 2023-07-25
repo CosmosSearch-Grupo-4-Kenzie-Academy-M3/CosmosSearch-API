@@ -6,7 +6,7 @@ import schemas from "../schemas";
 
 const posts = Router();
 
-posts.get("", controllers.postRead);
+posts.get("", controllers.postReadAll);
 
 posts.use(middlewares.verifyToken);
 

@@ -8,11 +8,13 @@ const postCreate = async (req: Request, res: Response): Promise<Response> => {
 
   const newPost = await postsServices.createPost(postData, userId);
 
-  return res.json(newPost);
+  return res.status(201).json(newPost);
 };
 
-const postRead = async (req: Request, res: Response): Promise<Response> => {
-  return res.json("");
+const postReadAll = async (req: Request, res: Response): Promise<Response> => {
+  const posts = await postsServices.findAllPost();
+
+  return res.json(posts);
 };
 
 const postUpdate = async (req: Request, res: Response): Promise<Response> => {
@@ -25,7 +27,7 @@ const postDelete = async (req: Request, res: Response): Promise<Response> => {
 
 const posts = {
   postCreate,
-  postRead,
+  postReadAll,
   postUpdate,
   postDelete,
 };

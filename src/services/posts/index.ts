@@ -1,6 +1,8 @@
 import createPost from "./createPost.service";
+import findAllPost from "./findAllPost.service";
 
-const postsService = {
+const postsServices = {
   createPost,
+  findAllPost,
 };
-export default postsService;
+export default postsServices;
