@@ -9,12 +9,11 @@ const comment = z.object({
 })
 
 const request = comment.omit({
-    id: true,
-    createdAt: true,
-    uptedAt: true,
-    deletedAt: true    
+    id: true as never,
+    createdAt: true as never,
+    updatedAt: true as never,
+    deletedAt: true as never
 })
-
 const responseArray = comment.array()
 
 const comments = {
