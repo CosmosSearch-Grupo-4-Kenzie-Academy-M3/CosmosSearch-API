@@ -56,7 +56,8 @@ const userUpdateProfile = async (req: Request, res: Response): Promise<Response>
 };
 
 const userDelete = async (req: Request, res: Response): Promise<Response> => {
-    const userId = Number(req.params.id)
+
+    const userId = Number(res.locals.userId) 
     await usersServices.deleteUser(userId)
 
     return res.sendStatus(204)
