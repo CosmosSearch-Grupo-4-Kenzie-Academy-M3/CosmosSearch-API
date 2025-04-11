@@ -26,6 +26,6 @@ users.get("/profile", controllers.userReadProfile);
 users.get("/:id", middlewares.verifyUserId, controllers.userReadById);
 users.patch("/:id", middlewares.verifyUserId, controllers.userUpdateById);
 users.patch("/profile/update", controllers.userUpdateProfile);
-users.delete("/delete", controllers.userDelete);
+users.delete("/delete", middlewares.verifyUserIdToken, controllers.userDelete);
 
 export default users;
