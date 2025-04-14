@@ -6,22 +6,22 @@ import schemas from "../schemas";
 
 const posts = Router();
 
-posts.post(
-  "",
-  middlewares.validateSchema(schemas.posts.request),
-  controllers.postCreate
-);
-
 posts.get("", controllers.postReadAll);
 
 posts.use(middlewares.verifyToken);
 
-posts.get("/profile", controllers.postReadByToken);
+  posts.get("/profile", controllers.postReadByToken);
 
-posts.get("/:userId", middlewares.verifyUserId, controllers.postReadByUserId)
+  posts.get("/:userId", middlewares.verifyUserId, controllers.postReadByUserId);
 
-posts.patch("/:id", middlewares.verifyPostId, controllers.postUpdate);
+  posts.post(
+    "",
+    middlewares.validateSchema(schemas.posts.request),
+    controllers.postCreate
+  );
 
-posts.delete("/:id", middlewares.verifyPostId, controllers.postDelete);
+  posts.patch("/:id", middlewares.verifyPostId, controllers.postUpdate);
+
+  posts.delete("/:id", middlewares.verifyPostId, controllers.postDelete);
 
 export default posts;
