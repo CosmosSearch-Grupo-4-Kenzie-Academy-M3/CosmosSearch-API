@@ -6,19 +6,20 @@ import schemas from "../schemas";
 
 const posts = Router();
 
+posts.post(
+  "",
+  middlewares.validateSchema(schemas.posts.request),
+  controllers.postCreate
+);
+
 posts.get("", controllers.postReadAll);
 
 posts.use(middlewares.verifyToken);
 
 posts.get("/profile", controllers.postReadByToken);
 
-posts.get("/:userId", middlewares.verifyUserId, controllers.postReadByUserId);
+posts.get("/:userId", middlewares.verifyUserId, controllers.postReadByUserId)
 
-posts.post(
-  "",
-  middlewares.validateSchema(schemas.posts.request),
-  controllers.postCreate
-);
 posts.patch("/:id", middlewares.verifyPostId, controllers.postUpdate);
 
 posts.delete("/:id", middlewares.verifyPostId, controllers.postDelete);
